@@ -72,6 +72,6 @@ yarn-error.log*
 
 # Development plugins removed - using production versions from wp-content/plugins/
 
-# Test files (optional - you might want to include these)
-# test-*.html
-# demo-*.html
+# Test files (exclude from production)
+test-*.html
+demo-*.html
