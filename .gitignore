@@ -25,9 +25,10 @@ wp-content/litespeed/
 wp-content/plugins/
 !wp-content/plugins/index.php
 
-# WordPress themes (exclude third-party themes)
+# WordPress themes (exclude third-party themes, include our custom theme)
 wp-content/themes/
 !wp-content/themes/index.php
+!wp-content/themes/trygo/
 
 # Logs
 *.log
