@@ -5,7 +5,7 @@
  */
 
 // Проверяем, что запрос пришел от GitHub
-$github_secret = 'your_webhook_secret_here'; // Замените на свой секретный ключ
+$github_secret = 'trygo-webhook-secret-2024'; // Секретный ключ для webhook
 $signature = $_SERVER['HTTP_X_HUB_SIGNATURE_256'] ?? '';
 
 if ($signature) {
