@@ -70,8 +70,7 @@ yarn-error.log*
 .hcflag
 .htaccess.bk
 
-# Our development plugins (include these)
-!plagin dev/
+# Development plugins removed - using production versions from wp-content/plugins/
 
 # Test files (optional - you might want to include these)
 # test-*.html
