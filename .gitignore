@@ -21,9 +21,11 @@ wp-content/wp-cache-config.php
 wp-content/cache/
 wp-content/litespeed/
 
-# WordPress plugins (exclude third-party plugins)
+# WordPress plugins (exclude third-party plugins, include our custom plugins)
 wp-content/plugins/
 !wp-content/plugins/index.php
+!wp-content/plugins/ads-creative-generator/
+!wp-content/plugins/business-hypothesis-generator/
 
 # WordPress themes (exclude third-party themes, include our custom theme)
 wp-content/themes/

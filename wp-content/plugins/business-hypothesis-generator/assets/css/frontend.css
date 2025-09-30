@@ -1,0 +1,236 @@
+/* TRYGO BusinessHypothesis Generator - Frontend Styles */
+
+/* Основной контейнер */
+.business-hypothesis-generator {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    background: transparent;
+}
+
+/* Экран ввода */
+.bhg-input-screen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Поле ввода URL */
+.bhg-url-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 0.85rem;
+    border-radius: 12px;
+    border: 1px solid rgba(19, 32, 57, 0.16);
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+    color: var(--text-primary, #132039);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+    box-sizing: border-box;
+}
+
+.bhg-url-input:focus {
+    outline: none;
+    border-color: var(--accent, #6366f1);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+
+/* Кнопка анализа */
+.bhg-analyze-btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 999px;
+    background: var(--accent, #6366f1);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 16px 40px rgba(99, 102, 241, 0.32);
+    transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.bhg-analyze-btn:hover {
+    background: #4f46e5;
+    box-shadow: 0 18px 44px rgba(99, 102, 241, 0.4);
+}
+
+.bhg-analyze-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Экран результатов */
+.bhg-results-screen {
+    margin-top: 2rem;
+}
+
+/* Заголовок результатов */
+.bhg-results-header {
+    margin-bottom: 1rem;
+}
+
+.bhg-results-header h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.6rem;
+    color: #132039;
+    font-weight: 700;
+}
+
+/* Список гипотез */
+.bhg-hypotheses-list {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Карточка гипотезы */
+.bhg-hypothesis-card {
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 1rem 8px;
+    position: relative;
+    box-shadow: none;
+    transition: background-color 200ms ease;
+}
+
+.bhg-hypothesis-card:hover {
+    background: #f8f9fa;
+}
+
+/* Заголовок гипотезы */
+.bhg-hypothesis-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #132039;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    line-height: 1.2;
+}
+
+/* Описание гипотезы */
+.bhg-hypothesis-description {
+    color: var(--text-muted, #5f6c86);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+}
+
+/* Детали гипотезы */
+.bhg-hypothesis-details {
+    background: #f8f9fa;
+    padding: 0.75rem 8px;
+    border-radius: 0;
+    margin-bottom: 1rem;
+    border: none;
+}
+
+.bhg-detail-item {
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.bhg-detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.bhg-detail-label {
+    font-weight: 600;
+    color: var(--accent, #6366f1);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.bhg-detail-value {
+    color: var(--text-muted, #5f6c86);
+}
+
+/* Кнопка копирования */
+.bhg-copy-btn {
+    background: var(--accent, #6366f1);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+    transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.bhg-copy-btn:hover {
+    background: #4f46e5;
+    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.3);
+}
+
+.bhg-copy-btn.copied {
+    background: #6c757d;
+    box-shadow: none;
+}
+
+/* Кнопки действий - удалены */
+
+/* Экран загрузки */
+.bhg-loading-screen {
+    text-align: center;
+    padding: 3rem 1rem;
+    display: none;
+}
+
+.bhg-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--accent, #6366f1);
+    border-radius: 50%;
+    animation: bhg-spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes bhg-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.bhg-loading-text {
+    font-size: 1.1rem;
+    color: var(--accent, #6366f1);
+    font-weight: 600;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .bhg-url-input {
+        height: 46px;
+        padding: 0 0.75rem;
+        font-size: 0.95rem;
+    }
+    
+    .bhg-analyze-btn {
+        height: 50px;
+        font-size: 0.95rem;
+    }
+    
+    .bhg-hypothesis-card {
+        padding: 0.75rem 8px;
+    }
+    
+    .bhg-hypothesis-title {
+        font-size: 1.1rem;
+    }
+    
+    .bhg-results-header h3 {
+        font-size: 1.4rem;
+    }
+}
