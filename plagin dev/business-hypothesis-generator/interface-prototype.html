@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRYGO - BusinessHypothesis Generator - Прототип</title>
+    <style>
+        /* Стили в соответствии с темой TRYGO */
+        .business-hypothesis-generator {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: inherit;
+            background: transparent;
+        }
+        
+        .bhg-input-screen {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .bhg-url-input {
+            width: 100%;
+            height: 48px;
+            padding: 0 0.85rem;
+            border-radius: 12px;
+            border: 1px solid rgba(19, 32, 57, 0.16);
+            font-size: 1rem;
+            font-family: inherit;
+            background: #fff;
+            color: var(--text-primary, #132039);
+            transition: border-color 160ms ease, box-shadow 160ms ease;
+            box-sizing: border-box;
+        }
+        
+        .bhg-url-input:focus {
+            outline: none;
+            border-color: var(--accent, #6366f1);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+        }
+        
+        .bhg-analyze-btn {
+            width: 100%;
+            height: 52px;
+            border-radius: 999px;
+            background: var(--accent, #6366f1);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 16px 40px rgba(99, 102, 241, 0.32);
+            transition: background-color 160ms ease, box-shadow 160ms ease;
+        }
+        
+        .bhg-analyze-btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 18px 44px rgba(99, 102, 241, 0.4);
+        }
+        
+        .bhg-analyze-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        /* ЭКРАН РЕЗУЛЬТАТОВ */
+        .bhg-results-screen {
+            margin-top: 2rem;
+        }
+        
+        .bhg-results-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            padding: 1rem 8px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        .bhg-results-header h3 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.6rem;
+            color: #132039;
+            font-weight: 700;
+        }
+        
+        .bhg-analyzed-url {
+            color: var(--accent, #6366f1);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .bhg-hypotheses-list {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .bhg-hypothesis-card {
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            padding: 1rem 8px;
+            position: relative;
+            box-shadow: none;
+            transition: background-color 200ms ease;
+        }
+        
+        .bhg-hypothesis-card:hover {
+            background: #f8f9fa;
+        }
+        
+        .bhg-hypothesis-number {
+            position: absolute;
+            top: -12px;
+            left: 1.5rem;
+            background: #6366f1;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .bhg-hypothesis-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #132039;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .bhg-hypothesis-description {
+            color: var(--text-muted, #5f6c86);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+        
+        .bhg-hypothesis-details {
+            background: #f8f9fa;
+            padding: 0.75rem 8px;
+            border-radius: 0;
+            margin-bottom: 1rem;
+            border: none;
+        }
+        
+        .bhg-detail-item {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .bhg-detail-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .bhg-detail-label {
+            font-weight: 600;
+            color: var(--accent, #6366f1);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .bhg-detail-value {
+            color: var(--text-muted, #5f6c86);
+        }
+        
+        .bhg-copy-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25);
+            transition: background-color 160ms ease, box-shadow 160ms ease;
+        }
+        
+        .bhg-copy-btn:hover {
+            background: #4f46e5;
+            box-shadow: 0 10px 24px rgba(99, 102, 241, 0.3);
+        }
+        
+        .bhg-copy-btn.copied {
+            background: #6c757d;
+            box-shadow: none;
+        }
+        
+        .bhg-action-buttons {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: none;
+        }
+        
+        .bhg-new-analysis-btn {
+            background: rgba(29, 78, 216, 0.08);
+            color: #1d4ed8;
+            border: none;
+            padding: 0.95rem 1.85rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background-color 160ms ease;
+        }
+        
+        .bhg-new-analysis-btn:hover {
+            background: rgba(29, 78, 216, 0.15);
+        }
+        
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .bhg-url-input {
+                height: 46px;
+                padding: 0 0.75rem;
+                font-size: 0.95rem;
+            }
+            
+            .bhg-analyze-btn {
+                height: 50px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="business-hypothesis-generator">
+        <!-- ЭКРАН ВВОДА URL -->
+        <div class="bhg-input-screen">
+            <input 
+                type="url" 
+                id="websiteUrl" 
+                class="bhg-url-input" 
+                placeholder="https://example.com"
+                value="https://trygo.com"
+            >
+            
+            <button class="bhg-analyze-btn" onclick="analyzeWebsite()">
+                Анализировать сайт
+            </button>
+        </div>
+        
+        <!-- ЭКРАН РЕЗУЛЬТАТОВ -->
+        <div class="bhg-results-screen">
+            <div class="bhg-results-header">
+                <h3>Бизнес-гипотезы</h3>
+                <div class="bhg-analyzed-url">Анализ сайта: <span id="analyzedUrl">https://trygo.com</span></div>
+            </div>
+            
+            <div class="bhg-hypotheses-list">
+                <!-- ГИПОТЕЗА 1 -->
+                <div class="bhg-hypothesis-card">
+                    <div class="bhg-hypothesis-title">1. Проблема клиентов с поиском решений</div>
+                    <div class="bhg-hypothesis-description">
+                        Клиенты тратят много времени на поиск подходящих инструментов и решений для своих бизнес-задач, что приводит к потере времени и ресурсов.
+                    </div>
+                    <div class="bhg-hypothesis-details">
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метод тестирования</div>
+                            <div class="bhg-detail-value">Интервью с 20 потенциальными клиентами</div>
+                        </div>
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метрики успеха</div>
+                            <div class="bhg-detail-value">70%+ подтверждают проблему</div>
+                        </div>
+                    </div>
+                    <button class="bhg-copy-btn" onclick="copyHypothesis(this)">
+                        Копировать
+                    </button>
+                </div>
+                
+                <!-- ГИПОТЕЗА 2 -->
+                <div class="bhg-hypothesis-card">
+                    <div class="bhg-hypothesis-title">2. Ценность персонализированных рекомендаций</div>
+                    <div class="bhg-hypothesis-description">
+                        Клиенты готовы платить за персонализированные рекомендации инструментов и решений, которые экономят их время и повышают эффективность.
+                    </div>
+                    <div class="bhg-hypothesis-details">
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метод тестирования</div>
+                            <div class="bhg-detail-value">A/B тест с платными рекомендациями</div>
+                        </div>
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метрики успеха</div>
+                            <div class="bhg-detail-value">15%+ конверсия в покупку</div>
+                        </div>
+                    </div>
+                    <button class="bhg-copy-btn" onclick="copyHypothesis(this)">
+                        Копировать
+                    </button>
+                </div>
+                
+                <!-- ГИПОТЕЗА 3 -->
+                <div class="bhg-hypothesis-card">
+                    <div class="bhg-hypothesis-title">3. Потребность в экспертной поддержке</div>
+                    <div class="bhg-hypothesis-description">
+                        Малый и средний бизнес нуждается в экспертной поддержке при выборе и внедрении новых технологических решений.
+                    </div>
+                    <div class="bhg-hypothesis-details">
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метод тестирования</div>
+                            <div class="bhg-detail-value">Опрос 100 компаний из целевой аудитории</div>
+                        </div>
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метрики успеха</div>
+                            <div class="bhg-detail-value">60%+ выражают потребность в консультациях</div>
+                        </div>
+                    </div>
+                    <button class="bhg-copy-btn" onclick="copyHypothesis(this)">
+                        Копировать
+                    </button>
+                </div>
+                
+                <!-- ГИПОТЕЗА 4 -->
+                <div class="bhg-hypothesis-card">
+                    <div class="bhg-hypothesis-number">4</div>
+                    <div class="bhg-hypothesis-title">Рыночная возможность в нише AI-инструментов</div>
+                    <div class="bhg-hypothesis-description">
+                        Растущий рынок AI-инструментов создает возможности для платформы, которая помогает бизнесу ориентироваться в этом пространстве.
+                    </div>
+                    <div class="bhg-hypothesis-details">
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метод тестирования</div>
+                            <div class="bhg-detail-value">Анализ конкурентов и поисковых запросов</div>
+                        </div>
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метрики успеха</div>
+                            <div class="bhg-detail-value">100%+ рост поисковых запросов по AI-инструментам</div>
+                        </div>
+                    </div>
+                    <button class="bhg-copy-btn" onclick="copyHypothesis(this)">
+                        Копировать
+                    </button>
+                </div>
+                
+                <!-- ГИПОТЕЗА 5 -->
+                <div class="bhg-hypothesis-card">
+                    <div class="bhg-hypothesis-number">5</div>
+                    <div class="bhg-hypothesis-title">Готовность платить за экономию времени</div>
+                    <div class="bhg-hypothesis-description">
+                        Предприниматели и менеджеры готовы платить за решения, которые экономят им 2+ часа в неделю на поиске и оценке инструментов.
+                    </div>
+                    <div class="bhg-hypothesis-details">
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метод тестирования</div>
+                            <div class="bhg-detail-value">Тест готовности платить с разными ценами</div>
+                        </div>
+                        <div class="bhg-detail-item">
+                            <div class="bhg-detail-label">Метрики успеха</div>
+                            <div class="bhg-detail-value">40%+ готовы платить $50+/месяц</div>
+                        </div>
+                    </div>
+                    <button class="bhg-copy-btn" onclick="copyHypothesis(this)">
+                        Копировать
+                    </button>
+                </div>
+            </div>
+            
+            <div class="bhg-action-buttons">
+                <button class="bhg-new-analysis-btn" onclick="showInputScreen()">
+                    Начать новый анализ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function analyzeWebsite() {
+            const url = document.getElementById('websiteUrl').value;
+            if (url && isValidUrl(url)) {
+                // Здесь будет AJAX запрос к серверу
+                alert('Анализ сайта: ' + url);
+            }
+        }
+        
+        function copyHypothesis(button) {
+            const card = button.closest('.bhg-hypothesis-card');
+            const title = card.querySelector('.bhg-hypothesis-title').textContent;
+            const description = card.querySelector('.bhg-hypothesis-description').textContent;
+            const testMethod = card.querySelector('.bhg-detail-item:first-child .bhg-detail-value').textContent;
+            const metrics = card.querySelector('.bhg-detail-item:last-child .bhg-detail-value').textContent;
+            
+            const textToCopy = `${title}\n\n${description}\n\nМетод тестирования: ${testMethod}\n\nМетрики успеха: ${metrics}`;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Скопировано!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        // Валидация URL
+        document.getElementById('websiteUrl').addEventListener('input', function(e) {
+            const url = e.target.value;
+            const button = document.querySelector('.bhg-analyze-btn');
+            
+            if (url && isValidUrl(url)) {
+                button.disabled = false;
+                button.style.opacity = '1';
+            } else {
+                button.disabled = true;
+                button.style.opacity = '0.6';
+            }
+        });
+        
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

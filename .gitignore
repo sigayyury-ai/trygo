@@ -1,0 +1,75 @@
+# WordPress core files (exclude from version control)
+wp-admin/
+wp-includes/
+wp-*.php
+xmlrpc.php
+index.php
+license.txt
+readme.html
+
+# WordPress configuration
+wp-config.php
+wp-config-sample.php
+
+# WordPress content (uploads, plugins, themes from wp.org)
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/
+wp-content/litespeed/
+
+# WordPress plugins (exclude third-party plugins)
+wp-content/plugins/
+!wp-content/plugins/index.php
+
+# WordPress themes (exclude third-party themes)
+wp-content/themes/
+!wp-content/themes/index.php
+
+# Logs
+*.log
+error_log
+debug.log
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if using Node.js tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# FTP and hosting specific
+.ftpquota
+.hcflag
+.htaccess.bk
+
+# Our development plugins (include these)
+!plagin dev/
+
+# Test files (optional - you might want to include these)
+# test-*.html
+# demo-*.html
