@@ -19,14 +19,14 @@ if ($signature) {
 }
 
 // Логируем webhook
-$log_file = '/home/uroclzzw/public_html/trygo/deploy.log';
+$log_file = __DIR__ . '/deploy.log';
 $log_entry = date('Y-m-d H:i:s') . " - Webhook received\n";
 file_put_contents($log_file, $log_entry, FILE_APPEND);
 
 // Выполняем деплой скрипт
 $output = [];
 $return_code = 0;
-exec('/home/uroclzzw/public_html/trygo/deploy.sh 2>&1', $output, $return_code);
+exec(__DIR__ . '/deploy.sh 2>&1', $output, $return_code);
 
 // Логируем результат
 $log_entry = date('Y-m-d H:i:s') . " - Deploy completed with code: $return_code\n";
