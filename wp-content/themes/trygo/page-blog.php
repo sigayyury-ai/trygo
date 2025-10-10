@@ -218,25 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div id="feed-sentinel" aria-hidden="true"></div>
       </section>
 
-      <section class="cta" aria-labelledby="cta-title">
-        <div class="cta-inner">
-          <div class="cta-media">
-            <img
-              src="<?php echo home_url(); ?>/wp-content/uploads/2025/09/glowing-spider-web-dark-abstract-backdrop-generated-by-ai.jpg"
-              alt="Team collaborating on a marketing plan"
-              loading="lazy"
-            />
-          </div>
-          <div class="cta-content">
-            <p class="eyebrow">Try TRYGO</p>
-            <h2 id="cta-title">Generate your GTM strategy in one click</h2>
-            <p>
-              Complete onboarding and receive ready-to-run campaign plans, prioritized hypotheses, and activation channels powered by our AI co-pilot.
-            </p>
-            <a class="cta-button" href="./product.html#pricing" role="button" data-modal-trigger="signup">Generate GTM</a>
-          </div>
-        </div>
-      </section>
+      <?php get_template_part('cta-section'); ?>
 </main>
  
           
