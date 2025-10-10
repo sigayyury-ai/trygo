@@ -1,0 +1,17 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Deploy to server
+      run: |
+        curl -X POST https://trygo.io/webhook-deploy.php \
+          -H "Content-Type: application/json" \
+          -H "X-Hub-Signature-256: sha256=$(echo -n '{}' | openssl dgst -sha256 -hmac 'trygo-webhook-secret-2024' -binary | base64)" \
+          -d '{"ref":"refs/heads/main","repository":{"name":"trygo"}}'
