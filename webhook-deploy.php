@@ -58,6 +58,21 @@ if ($zip_content === false) {
         $log_entry = date('Y-m-d H:i:s') . " - Archive extracted successfully\n";
         file_put_contents($log_file, $log_entry, FILE_APPEND);
         
+        // Копируем webhook-deploy.php
+        $webhook_source = $extract_dir . '/webhook-deploy.php';
+        $webhook_target = __DIR__ . '/webhook-deploy.php';
+        
+        if (file_exists($webhook_source)) {
+            if (copy($webhook_source, $webhook_target)) {
+                $log_entry = date('Y-m-d H:i:s') . " - webhook-deploy.php updated successfully\n";
+                file_put_contents($log_file, $log_entry, FILE_APPEND);
+            } else {
+                $log_entry = date('Y-m-d H:i:s') . " - Failed to copy webhook-deploy.php\n";
+                file_put_contents($log_file, $log_entry, FILE_APPEND);
+                $return_code = 1;
+            }
+        }
+        
         // Копируем все файлы темы автоматически
         $source_dir = $extract_dir . '/wp-content/themes/trygo/';
         $target_dir = __DIR__ . '/wp-content/themes/trygo/';
@@ -89,7 +104,7 @@ if ($zip_content === false) {
                 }
             }
             
-            $log_entry = date('Y-m-d H:i:s') . " - Total files copied: $copied_files\n";
+            $log_entry = date('Y-m-d H:i:s') . " - Total theme files copied: $copied_files\n";
             file_put_contents($log_file, $log_entry, FILE_APPEND);
         }
         
