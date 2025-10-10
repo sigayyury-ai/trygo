@@ -67,7 +67,7 @@
               ?>
             </nav>
           <?php endif; ?>
-          <a class="nav-cta" href="#pricing" data-modal-trigger="signup">
+          <a class="nav-cta" href="https://dashboard.trygo.io" target="_blank" rel="noopener noreferrer">
             <span>Get Started</span>
             <span class="cta-arrow">→</span>
           </a>
