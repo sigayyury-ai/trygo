@@ -328,23 +328,7 @@ get_header();
         </div>
       </section>
 
-      <section class="cta" aria-labelledby="features-cta-title">
-        <div class="cta-inner">
-          <div class="cta-media">
-            <img
-              src="<?php echo home_url(); ?>/wp-content/uploads/2025/09/glowing-spider-web-dark-abstract-backdrop-generated-by-ai.jpg"
-              alt="Team collaborating on launch collateral"
-              loading="lazy"
-            />
-          </div>
-          <div class="cta-content">
-            <p class="eyebrow">Ready to launch</p>
-            <h2 id="features-cta-title">Orchestrate onboarding, research, and GTM in one flow</h2>
-            <p>Join TRYGO to capture customer insight, validate hypotheses, and package your product with AI co-pilot support.</p>
-            <a class="cta-button" href="https://dashboard.trygo.io/dashboard" target="_blank" rel="noopener noreferrer" role="button">Start with Freemium</a>
-          </div>
-        </div>
-      </section>
+      <?php get_template_part('cta-section'); ?>
     </main>
 
 <?php
