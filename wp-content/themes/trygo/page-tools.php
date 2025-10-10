@@ -81,7 +81,7 @@ $back_link     = $posts_page_id ? get_permalink( $posts_page_id ) : home_url( '/
                 <p class="eyebrow"><?php esc_html_e( 'Ready to launch', 'trygo' ); ?></p>
                 <h2 id="tools-cta-title"><?php esc_html_e( 'Orchestrate onboarding, research, and GTM in one flow', 'trygo' ); ?></h2>
                 <p><?php esc_html_e( 'Join TRYGO to capture customer insight, validate hypotheses, and package your product with AI co-pilot support.', 'trygo' ); ?></p>
-                <a class="cta-button" href="<?php echo esc_url( home_url( '/#pricing' ) ); ?>" role="button" data-modal-trigger="signup"><?php esc_html_e( 'Start with Freemium', 'trygo' ); ?></a>
+                <a class="cta-button" href="https://dashboard.trygo.io/dashboard" target="_blank" rel="noopener noreferrer" role="button"><?php esc_html_e( 'Start with Freemium', 'trygo' ); ?></a>
               </div>
             </div>
           </section>

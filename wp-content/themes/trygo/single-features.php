@@ -33,7 +33,7 @@ $back_link = $feature_archive_link ?: ( $features_page_link ?: ( $posts_page_id 
           <?php if ( has_excerpt() ) : ?>
             <p class="feature-hero__tagline"><?php echo esc_html( get_the_excerpt() ); ?></p>
           <?php endif; ?>
-          <a class="feature-hero__cta" href="<?php echo esc_url( home_url( '/#pricing' ) ); ?>" data-modal-trigger="signup">
+          <a class="feature-hero__cta" href="https://dashboard.trygo.io/dashboard" target="_blank" rel="noopener noreferrer">
             <?php esc_html_e( 'Try this feature', 'trygo' ); ?>
           </a>
           <?php
@@ -148,7 +148,7 @@ $back_link = $feature_archive_link ?: ( $features_page_link ?: ( $posts_page_id 
             <p class="eyebrow">Ready to launch</p>
             <h2 id="features-cta-title">Launch your GTM strategy in one click</h2>
             <p>Join TRYGO to capture customer insight, validate hypotheses, and package your product with AI co-pilot support.</p>
-            <a class="cta-button" href="./product.html#pricing" role="button" data-modal-trigger="signup">Start with Freemium</a>
+            <a class="cta-button" href="https://dashboard.trygo.io/dashboard" target="_blank" rel="noopener noreferrer" role="button">Start with Freemium</a>
           </div>
         </div>
       </section>

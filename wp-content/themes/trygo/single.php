@@ -59,7 +59,7 @@ $back_link     = $posts_page_id ? get_permalink( $posts_page_id ) : home_url( '/
               <li><?php esc_html_e( 'Actionable GTM roadmap', 'trygo' ); ?></li>
               <li><?php esc_html_e( 'Launch content and analytics', 'trygo' ); ?></li>
             </ul>
-            <a class="sidebar-button" href="<?php echo esc_url( home_url( '/#pricing' ) ); ?>" role="button" data-modal-trigger="signup">
+            <a class="sidebar-button" href="https://dashboard.trygo.io/dashboard" target="_blank" rel="noopener noreferrer" role="button">
               <?php esc_html_e( 'Start with Freemium', 'trygo' ); ?>
             </a>
             <p class="sidebar-footnote"><?php esc_html_e( '7-day trial · No credit card required', 'trygo' ); ?></p>
