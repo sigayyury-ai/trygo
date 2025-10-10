@@ -7,56 +7,19 @@ get_header();
 ?>
 
     <section class="hero" id="hero">
-      <div class="hero-background">
-        <div class="hero-gradient"></div>
-        <div class="hero-particles"></div>
-      </div>
       <div class="hero-content">
-        <div class="hero-badge">
-          <span class="badge-icon">🚀</span>
-          <span>AI-Powered Marketing Co-Pilot</span>
-        </div>
-        <h1>Transform your idea into a complete go-to-market strategy in minutes</h1>
+        <h1>AI marketing co-pilot for solo founders and solopreneurs</h1>
         <p class="hero-lead">
-          No marketing expertise or time? Our AI co-pilot creates complete go-to-market strategies, plans, and marketing assets straight out of the box.
+          No marketing expertise or time? Use our AI co-pilot to create complete go-to-market strategies in minutes.
         </p>
         <ul class="hero-benefits">
-          <li>
-            <span class="benefit-icon">⚡</span>
-            <span>Shortens the path from idea to first qualified leads</span>
-          </li>
-          <li>
-            <span class="benefit-icon">🎯</span>
-            <span>Delivers strategy, plan, and marketing assets ready to use</span>
-          </li>
-          <li>
-            <span class="benefit-icon">💡</span>
-            <span>Launch digital products without hiring a marketing team</span>
-          </li>
+          <li>Shortens the path from idea to first qualified leads.</li>
+          <li>Delivers strategy, plan, and marketing assets straight out of the box.</li>
+          <li>Helps launch digital products without hiring a marketing team.</li>
         </ul>
         <div class="hero-actions">
-          <a class="primary-btn" href="#pricing">
-            <span>Start Your GTM Strategy</span>
-            <span class="btn-arrow">→</span>
-          </a>
-          <a class="secondary-btn" href="#unique-features">
-            <span>Explore Features</span>
-            <span class="btn-play">▶</span>
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-number">10x</span>
-            <span class="stat-label">Faster Launch</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">100+</span>
-            <span class="stat-label">Successful Launches</span>
-          </div>
-          <div class="stat">
-            <span class="stat-number">5min</span>
-            <span class="stat-label">Average Setup</span>
-          </div>
+          <a class="primary-btn" href="#pricing">Make your GTM in one click</a>
+          <a class="secondary-btn" href="#unique-features">See all features</a>
         </div>
       </div>
     </section>
