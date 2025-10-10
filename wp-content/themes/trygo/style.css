@@ -1117,8 +1117,9 @@ main {
   display: block !important;
   align-items: unset !important;
   padding: 2rem 0 !important;
-  max-width: var(--wrapper);
-  margin: 0 auto;
+  width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
 }
 
 .product-page .hero-content {
@@ -1128,7 +1129,9 @@ main {
   gap: unset !important;
   z-index: 1;
   text-align: left !important;
-  max-width: 600px;
+  max-width: var(--wrapper);
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
 }
 
 .product-page .hero h1 {
@@ -1137,21 +1140,21 @@ main {
   font-weight: 700 !important;
   line-height: 1.2 !important;
   letter-spacing: unset !important;
-  color: var(--text-primary) !important;
+  color: white !important;
 }
 
 .hero-lead {
   margin: 0 0 2rem 0 !important;
   font-size: 1.2rem !important;
   line-height: 1.6 !important;
-  color: var(--text-secondary) !important;
+  color: white !important;
 }
 
 .hero-benefits {
   margin: 0 0 2rem 0 !important;
   padding: 0 !important;
   list-style: none !important;
-  color: var(--text-secondary) !important;
+  color: white !important;
   display: block !important;
   flex-direction: unset !important;
   gap: unset !important;
@@ -1161,7 +1164,7 @@ main {
   margin: 0 0 0.5rem 0 !important;
   padding: 0 0 0 1.5rem !important;
   position: relative;
-  color: var(--text-secondary) !important;
+  color: white !important;
   line-height: 1.5 !important;
   background: none !important;
   border: none !important;
