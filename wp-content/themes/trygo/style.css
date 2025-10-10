@@ -1110,6 +1110,61 @@ main {
   height: clamp(220px, 40vh, 320px);
 }
 
+/* Simple Hero Styles - Left Aligned */
+.hero {
+  padding: 2rem 0;
+  max-width: var(--wrapper);
+  margin: 0 auto;
+}
+
+.hero-content {
+  text-align: left;
+  max-width: 600px;
+}
+
+.hero h1 {
+  margin: 0 0 1rem 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.hero-lead {
+  margin: 0 0 2rem 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.hero-benefits {
+  margin: 0 0 2rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-benefits li {
+  margin: 0 0 0.5rem 0;
+  padding: 0 0 0 1.5rem;
+  position: relative;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.hero-benefits li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 
 .fallback-visual {
   width: 88px;
