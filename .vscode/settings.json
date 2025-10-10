@@ -1,0 +1,16 @@
+{
+  "git.enableSmartCommit": true,
+  "git.postCommitCommand": "push",
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.autorefresh": true,
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "git.inputValidation": "always",
+  "git.inputValidationLength": 72,
+  "git.inputValidationSubjectLength": 50
+}
