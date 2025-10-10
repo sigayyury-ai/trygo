@@ -44,7 +44,25 @@
     <header class="top-nav" data-nav>
       <div class="top-nav__inner">
         <a class="brand" href="<?php echo esc_url( home_url('/') ); ?>" aria-label="TRYGO home">
-          <span class="brand-logo" aria-hidden="true">T</span>
+          <span class="brand-logo" aria-hidden="true">
+            <?php 
+            $logo_path = get_template_directory() . '/assets/images/trygo-logo.png';
+            $logo_url = get_template_directory_uri() . '/assets/images/trygo-logo.png';
+            if ( file_exists( $logo_path ) ) : ?>
+              <img src="<?php echo esc_url( $logo_url ); ?>" alt="TRYGO Logo" width="38" height="38" />
+            <?php else : ?>
+              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="38" height="38" rx="12" fill="url(#gradient)"/>
+                <text x="19" y="26" font-family="Inter, sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="white" letter-spacing="0.08em">T</text>
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            <?php endif; ?>
+          </span>
           <span class="brand-name">TRYGO</span>
           <span class="brand-badge">Beta</span>
         </a>

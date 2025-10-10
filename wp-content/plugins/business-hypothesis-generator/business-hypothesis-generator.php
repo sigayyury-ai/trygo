@@ -153,8 +153,8 @@ class BusinessHypothesisGenerator {
                     type="url" 
                     id="websiteUrl" 
                     class="bhg-url-input" 
-                    placeholder="https://example.com"
-                    value="https://trygo.com"
+                    placeholder="Введите URL сайта для анализа (например: example.com)"
+                    value=""
                 >
                 
                 <button class="bhg-analyze-btn">

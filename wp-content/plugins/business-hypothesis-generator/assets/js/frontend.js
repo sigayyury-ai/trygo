@@ -275,7 +275,7 @@
         return {
             hypotheses: demoHypotheses,
             analysis: "Demo analysis: Analyzed website content about business tools and solutions platform. Main topics include technology recommendations, AI tools, business automation, and expert consulting services.",
-            website_url: "https://trygo.com"
+            website_url: ""
         };
     }
 

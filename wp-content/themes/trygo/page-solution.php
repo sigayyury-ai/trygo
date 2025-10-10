@@ -90,6 +90,6 @@ get_header();
     <?php endif; ?>
   <?php endwhile; ?>
 <?php endif; ?>
-
+<?php get_template_part('cta-section'); ?>
 </main>
 <?php get_footer();

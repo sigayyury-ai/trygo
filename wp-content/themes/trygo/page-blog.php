@@ -7,6 +7,10 @@ get_header();
 ?>
 
 <main>
+  <div class="blog-header">
+    <h1>Блог</h1>
+    <p>Полезные статьи и материалы о маркетинге, бизнесе и продажах</p>
+  </div>
       <section class="featured" aria-label="Editor picks">
         <div class="section-header">
           <h2>Latest highlights</h2>

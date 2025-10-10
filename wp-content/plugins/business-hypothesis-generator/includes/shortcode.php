@@ -25,8 +25,8 @@ function business_hypothesis_shortcode($atts) {
                 type="url" 
                 id="websiteUrl" 
                 class="bhg-url-input" 
-                placeholder="https://example.com"
-                value="https://trygo.com"
+                placeholder="Введите URL сайта для анализа (например: example.com)"
+                value=""
             >
             
             <button class="bhg-analyze-btn">
@@ -38,7 +38,7 @@ function business_hypothesis_shortcode($atts) {
         <div class="bhg-results-screen">
             <div class="bhg-results-header">
                 <h3><?php echo esc_html($atts['title']); ?></h3>
-                <div class="bhg-analyzed-url">Анализ сайта: <span id="analyzedUrl">https://trygo.com</span></div>
+                <div class="bhg-analyzed-url">Анализ сайта: <span id="analyzedUrl"></span></div>
             </div>
             
             <div class="bhg-hypotheses-list">
