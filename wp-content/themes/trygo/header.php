@@ -67,7 +67,10 @@
               ?>
             </nav>
           <?php endif; ?>
-          <a class="nav-cta" href="#pricing" data-modal-trigger="signup">Get Started</a>
+          <a class="nav-cta" href="#pricing" data-modal-trigger="signup">
+            <span>Get Started</span>
+            <span class="cta-arrow">→</span>
+          </a>
         </div>
       </div>
     </header>

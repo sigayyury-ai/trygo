@@ -2,8 +2,8 @@
 Theme Name: TRYGO Marketing Co-Pilot
 Theme URI: https://trygo.io/
 Author: TRYGO
-Description: Marketing-focused theme for the TRYGO AI co-pilot product site.
-Version: 1.0.0
+Description: Marketing-focused theme for the TRYGO AI co-pilot product site with enhanced hero section and modern design.
+Version: 1.1.0
 Requires at least: 6.0
 Tested up to: 6.4
 License: GNU General Public License v2 or later
@@ -29,10 +29,19 @@ html {
   --stroke: rgba(19, 32, 57, 0.08);
   --accent: #6366f1;
   --accent-soft: rgba(99, 102, 241, 0.15);
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
   --radius-lg: 24px;
   --radius-md: 18px;
+  --radius-sm: 12px;
   --wrapper: 1100px;
   --page-padding: clamp(1rem, 4vw, 1.5rem);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 * {
@@ -734,6 +743,67 @@ ul.plan-points,
   .hero-benefits {
     padding-left: 1rem;
   }
+
+  /* Mobile Hero Styles */
+  .hero {
+    min-height: clamp(50vh, 60vh, 70vh);
+    padding: 1.5rem var(--page-padding);
+    margin: 1rem 0;
+  }
+
+  .hero-content {
+    gap: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .hero-lead {
+    font-size: 1rem;
+  }
+
+  .hero-benefits {
+    gap: 0.75rem;
+  }
+
+  .hero-benefits li {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .hero-actions .primary-btn,
+  .hero-actions .secondary-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .stat {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
 }
 
 .top-nav + .site-header {
@@ -824,21 +894,47 @@ ul.plan-points,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.55rem 1.2rem;
-  border-radius: 999px;
-  background: #1d4ed8;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-gradient);
   color: #fff;
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
-  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.25);
-  transition: background-color 160ms ease, box-shadow 160ms ease;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-cta:hover::before {
+  opacity: 1;
 }
 
 .nav-cta:hover,
 .nav-cta:focus-visible {
-  background: #1e40af;
-  box-shadow: 0 14px 36px rgba(29, 78, 216, 0.3);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 50%, #ec4899 100%);
+}
+
+.cta-arrow {
+  transition: transform 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.nav-cta:hover .cta-arrow {
+  transform: translateX(4px);
 }
 
 
@@ -1012,6 +1108,242 @@ main {
 
 .hero-fallback {
   height: clamp(220px, 40vh, 320px);
+}
+
+/* Enhanced Hero Section Styles */
+.hero {
+  position: relative;
+  min-height: clamp(60vh, 70vh, 80vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem) var(--page-padding);
+  background: var(--accent-gradient);
+  color: white;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  margin: 2rem 0;
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: var(--accent-gradient);
+  opacity: 0.9;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px, 80px 80px, 30px 30px;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--wrapper);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  animation: slideInDown 0.8s ease-out;
+}
+
+.badge-icon {
+  font-size: 1.1rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.hero-lead {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  animation: slideInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-benefits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  animation: slideInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.hero-benefits li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.benefit-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: slideInUp 0.8s ease-out 0.8s both;
+}
+
+.hero-actions .primary-btn {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--accent);
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-actions .primary-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-actions .secondary-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.hero-actions .secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-arrow, .btn-play {
+  transition: transform 0.3s ease;
+}
+
+.primary-btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.secondary-btn:hover .btn-play {
+  transform: scale(1.1);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  animation: slideInUp 0.8s ease-out 1s both;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .fallback-visual {
@@ -1626,6 +1958,12 @@ body.modal-open {
 
   .nav-cta {
     width: 100%;
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .cta-arrow {
+    font-size: 1.2rem;
   }
 }
 
