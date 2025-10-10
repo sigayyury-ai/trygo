@@ -346,19 +346,19 @@ get_header();
         </div>
       </section>
 
-      <?php
-        get_template_part('cta-section', null, [
-          'eyebrow' => 'Experience TRYGO',
-          'title' => 'Launch your GTM strategy in one click',
-          'description' => 'Complete the onboarding flow and get campaigns, hypotheses, and activation channels generated for you in minutes.',
-          'button_text' => 'Generate GTM',
-          'button_url' => 'https://dashboard.trygo.io/dashboard',
-          'image_url' => 'https://urock.pro/trygo/wp-content/uploads/2025/09/glowing-spider-web-dark-abstract-backdrop-generated-by-ai.jpg',
-          'image_alt' => 'Team collaborating on a go-to-market strategy',
-          'section_id' => 'onboarding',
-          'title_id' => 'product-cta-title'
-        ]);
-      ?>
+      <section class="cta" id="onboarding" aria-labelledby="product-cta-title">
+        <div class="cta-inner">
+          <div class="cta-media">
+            <img src="https://urock.pro/trygo/wp-content/uploads/2025/09/glowing-spider-web-dark-abstract-backdrop-generated-by-ai.jpg" alt="Team collaborating on a go-to-market strategy" loading="lazy" />
+          </div>
+          <div class="cta-content">
+            <p class="eyebrow">Experience TRYGO</p>
+            <h2 id="product-cta-title">Launch your GTM strategy in one click</h2>
+            <p>Complete the onboarding flow and get campaigns, hypotheses, and activation channels generated for you in minutes.</p>
+            <a class="cta-button" href="https://dashboard.trygo.io/dashboard" target="_blank" rel="noopener noreferrer" role="button">Generate GTM</a>
+          </div>
+        </div>
+      </section>
     </main>
 
 <?php get_footer(); ?>
