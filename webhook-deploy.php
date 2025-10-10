@@ -77,10 +77,21 @@ if ($zip_content === false) {
         $source_dir = $extract_dir . '/wp-content/themes/trygo/';
         $target_dir = __DIR__ . '/wp-content/themes/trygo/';
         
+        $log_entry = date('Y-m-d H:i:s') . " - Source dir: $source_dir\n";
+        file_put_contents($log_file, $log_entry, FILE_APPEND);
+        $log_entry = date('Y-m-d H:i:s') . " - Target dir: $target_dir\n";
+        file_put_contents($log_file, $log_entry, FILE_APPEND);
+        
         if (is_dir($source_dir) && is_dir($target_dir)) {
+            $log_entry = date('Y-m-d H:i:s') . " - Both directories exist\n";
+            file_put_contents($log_file, $log_entry, FILE_APPEND);
+            
             // Получаем все файлы из папки темы автоматически
             $files = scandir($source_dir);
             $copied_files = 0;
+            
+            $log_entry = date('Y-m-d H:i:s') . " - Found " . count($files) . " items in source directory\n";
+            file_put_contents($log_file, $log_entry, FILE_APPEND);
             
             foreach ($files as $file) {
                 // Пропускаем служебные файлы
@@ -91,7 +102,21 @@ if ($zip_content === false) {
                 $source_file = $source_dir . $file;
                 $target_file = $target_dir . $file;
                 
+                $log_entry = date('Y-m-d H:i:s') . " - Processing file: $file\n";
+                file_put_contents($log_file, $log_entry, FILE_APPEND);
+                
                 if (file_exists($source_file)) {
+                    // Проверяем права доступа
+                    $target_writable = is_writable($target_dir);
+                    $log_entry = date('Y-m-d H:i:s') . " - Target directory writable: " . ($target_writable ? 'yes' : 'no') . "\n";
+                    file_put_contents($log_file, $log_entry, FILE_APPEND);
+                    
+                    if (file_exists($target_file)) {
+                        $target_file_writable = is_writable($target_file);
+                        $log_entry = date('Y-m-d H:i:s') . " - Target file writable: " . ($target_file_writable ? 'yes' : 'no') . "\n";
+                        file_put_contents($log_file, $log_entry, FILE_APPEND);
+                    }
+                    
                     if (copy($source_file, $target_file)) {
                         $log_entry = date('Y-m-d H:i:s') . " - $file updated successfully\n";
                         file_put_contents($log_file, $log_entry, FILE_APPEND);
@@ -101,10 +126,16 @@ if ($zip_content === false) {
                         file_put_contents($log_file, $log_entry, FILE_APPEND);
                         $return_code = 1;
                     }
+                } else {
+                    $log_entry = date('Y-m-d H:i:s') . " - Source file does not exist: $source_file\n";
+                    file_put_contents($log_file, $log_entry, FILE_APPEND);
                 }
             }
             
             $log_entry = date('Y-m-d H:i:s') . " - Total theme files copied: $copied_files\n";
+            file_put_contents($log_file, $log_entry, FILE_APPEND);
+        } else {
+            $log_entry = date('Y-m-d H:i:s') . " - Directory check failed. Source exists: " . (is_dir($source_dir) ? 'yes' : 'no') . ", Target exists: " . (is_dir($target_dir) ? 'yes' : 'no') . "\n";
             file_put_contents($log_file, $log_entry, FILE_APPEND);
         }
         
