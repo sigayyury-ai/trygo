@@ -58,25 +58,21 @@ if ($zip_content === false) {
         $log_entry = date('Y-m-d H:i:s') . " - Archive extracted successfully\n";
         file_put_contents($log_file, $log_entry, FILE_APPEND);
         
-        // Копируем все файлы темы
+        // Копируем все файлы темы автоматически
         $source_dir = $extract_dir . '/wp-content/themes/trygo/';
         $target_dir = __DIR__ . '/wp-content/themes/trygo/';
         
         if (is_dir($source_dir) && is_dir($target_dir)) {
-            // Копируем все файлы из папки темы
-            $files_to_copy = [
-                'header.php',
-                'cta-section.php',
-                'page-features.php',
-                'page-solution.php',
-                'page-tools.php',
-                'single-features.php',
-                'single-solutions.php',
-                'single.php',
-                'front-page.php'
-            ];
+            // Получаем все файлы из папки темы автоматически
+            $files = scandir($source_dir);
+            $copied_files = 0;
             
-            foreach ($files_to_copy as $file) {
+            foreach ($files as $file) {
+                // Пропускаем служебные файлы
+                if ($file === '.' || $file === '..' || is_dir($source_dir . $file)) {
+                    continue;
+                }
+                
                 $source_file = $source_dir . $file;
                 $target_file = $target_dir . $file;
                 
@@ -84,6 +80,7 @@ if ($zip_content === false) {
                     if (copy($source_file, $target_file)) {
                         $log_entry = date('Y-m-d H:i:s') . " - $file updated successfully\n";
                         file_put_contents($log_file, $log_entry, FILE_APPEND);
+                        $copied_files++;
                     } else {
                         $log_entry = date('Y-m-d H:i:s') . " - Failed to copy $file\n";
                         file_put_contents($log_file, $log_entry, FILE_APPEND);
@@ -91,6 +88,9 @@ if ($zip_content === false) {
                     }
                 }
             }
+            
+            $log_entry = date('Y-m-d H:i:s') . " - Total files copied: $copied_files\n";
+            file_put_contents($log_file, $log_entry, FILE_APPEND);
         }
         
         // Удаляем временные файлы
