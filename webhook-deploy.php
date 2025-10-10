@@ -58,23 +58,37 @@ if ($zip_content === false) {
         $log_entry = date('Y-m-d H:i:s') . " - Archive extracted successfully\n";
         file_put_contents($log_file, $log_entry, FILE_APPEND);
         
-        // Копируем обновленные файлы
+        // Копируем все файлы темы
         $source_dir = $extract_dir . '/wp-content/themes/trygo/';
         $target_dir = __DIR__ . '/wp-content/themes/trygo/';
         
         if (is_dir($source_dir) && is_dir($target_dir)) {
-            // Копируем header.php
-            $source_file = $source_dir . 'header.php';
-            $target_file = $target_dir . 'header.php';
+            // Копируем все файлы из папки темы
+            $files_to_copy = [
+                'header.php',
+                'cta-section.php',
+                'page-features.php',
+                'page-solution.php',
+                'page-tools.php',
+                'single-features.php',
+                'single-solutions.php',
+                'single.php',
+                'front-page.php'
+            ];
             
-            if (file_exists($source_file)) {
-                if (copy($source_file, $target_file)) {
-                    $log_entry = date('Y-m-d H:i:s') . " - header.php updated successfully\n";
-                    file_put_contents($log_file, $log_entry, FILE_APPEND);
-                } else {
-                    $log_entry = date('Y-m-d H:i:s') . " - Failed to copy header.php\n";
-                    file_put_contents($log_file, $log_entry, FILE_APPEND);
-                    $return_code = 1;
+            foreach ($files_to_copy as $file) {
+                $source_file = $source_dir . $file;
+                $target_file = $target_dir . $file;
+                
+                if (file_exists($source_file)) {
+                    if (copy($source_file, $target_file)) {
+                        $log_entry = date('Y-m-d H:i:s') . " - $file updated successfully\n";
+                        file_put_contents($log_file, $log_entry, FILE_APPEND);
+                    } else {
+                        $log_entry = date('Y-m-d H:i:s') . " - Failed to copy $file\n";
+                        file_put_contents($log_file, $log_entry, FILE_APPEND);
+                        $return_code = 1;
+                    }
                 }
             }
         }
