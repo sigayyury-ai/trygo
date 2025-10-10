@@ -26,7 +26,17 @@ file_put_contents($log_file, $log_entry, FILE_APPEND);
 // Выполняем деплой скрипт
 $output = [];
 $return_code = 0;
+
+// Сначала пробуем выполнить deploy.sh
 exec(__DIR__ . '/deploy.sh 2>&1', $output, $return_code);
+
+// Если deploy.sh не сработал, пробуем простой git pull
+if ($return_code !== 0) {
+    $log_entry = date('Y-m-d H:i:s') . " - Deploy.sh failed, trying direct git pull\n";
+    file_put_contents($log_file, $log_entry, FILE_APPEND);
+    
+    exec('cd ' . __DIR__ . ' && git pull origin main 2>&1', $output, $return_code);
+}
 
 // Логируем результат
 $log_entry = date('Y-m-d H:i:s') . " - Deploy completed with code: $return_code\n";
