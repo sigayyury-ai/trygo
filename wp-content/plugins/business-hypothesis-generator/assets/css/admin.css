@@ -1,0 +1,29 @@
+/* Admin styles for Business Hypothesis Generator */
+.admin-page-title {
+    margin-bottom: 20px;
+}
+
+.api-test-result {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.settings-form {
+    max-width: 800px;
+}
+
+.form-table th {
+    width: 200px;
+}
+
+.form-table td {
+    padding: 15px 10px;
+}
+
+.widefat {
+    width: 100%;
+}
+
+
+
