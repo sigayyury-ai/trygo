@@ -20,6 +20,74 @@ function trygo_theme_setup() {
 add_action( 'after_setup_theme', 'trygo_theme_setup' );
 
 /**
+ * Print structured data JSON-LD in the head.
+ */
+function trygo_print_structured_data() {
+    // Early return in admin.
+    if ( is_admin() ) {
+        return;
+    }
+
+    // Gather site metadata.
+    $site_name        = get_bloginfo( 'name' );
+    $site_description = get_bloginfo( 'description' );
+    $site_url         = site_url();
+
+    // Determine fallback image URL.
+    $fallback_image = '';
+    $og_image_path  = get_template_directory() . '/assets/images/trygo-og.png';
+    $logo_path      = get_template_directory() . '/assets/images/trygo-logo.png';
+    
+    if ( file_exists( $og_image_path ) ) {
+        $fallback_image = get_template_directory_uri() . '/assets/images/trygo-og.png';
+    } elseif ( file_exists( $logo_path ) ) {
+        $fallback_image = get_template_directory_uri() . '/assets/images/trygo-logo.png';
+    }
+
+    // Determine schema type.
+    $schema_type = 'SoftwareApplication';
+    if ( is_singular( 'features' ) || is_singular( 'post' ) ) {
+        $schema_type = 'Product';
+    }
+
+    // Build JSON-LD object.
+    $structured_data = [
+        '@context'    => 'https://schema.org',
+        '@type'       => $schema_type,
+        'name'        => $site_name,
+        'url'         => $site_url,
+        'description' => $site_description,
+        'image'       => $fallback_image,
+        'brand'       => [
+            '@type' => 'Brand',
+            'name'  => $site_name,
+        ],
+        'audience'    => [
+            '@type'        => 'Audience',
+            'audienceType' => 'Business',
+        ],
+    ];
+
+    // Add offers for Product type.
+    if ( 'Product' === $schema_type ) {
+        $structured_data['offers'] = [
+            '@type'         => 'Offer',
+            'priceCurrency' => 'USD',
+            'price'         => '0.00',
+            'availability'  => 'InStock',
+            'url'           => $site_url,
+        ];
+    }
+
+    // Encode and output.
+    $json_output = wp_json_encode( $structured_data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+    if ( $json_output ) {
+        echo '<script type="application/ld+json">' . $json_output . '</script>' . "\n";
+    }
+}
+add_action( 'wp_head', 'trygo_print_structured_data', 1 );
+
+/**
  * Enqueue theme assets.
  */
 function trygo_theme_assets() {
