@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const heroTitle = (document.querySelector('.hero h1')?.textContent || document.title).trim();
     const heroLead = (document.querySelector('.hero-lead')?.textContent || '').trim();
+    const heroImage = document.querySelector('.hero img, .hero figure img')?.src
+      || `${origin}/wp-content/uploads/trygo-hero-default.jpg`;
 
     const featureList = Array.from(document.querySelectorAll('.feature-item')).map((item) => {
       const title = item.querySelector('h3')?.textContent?.trim() || '';
@@ -90,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).filter(Boolean);
 
     const audienceNodes = Array.from(document.querySelectorAll('.audience-card')).map((card) => ({
-      '@type': 'Audience',
+      '@type': 'PeopleAudience',
       audienceType: card.querySelector('h3')?.textContent?.trim() || '',
       description: card.querySelector('p')?.textContent?.trim() || '',
     })).filter((entry) => entry.audienceType);
@@ -134,6 +136,41 @@ document.addEventListener('DOMContentLoaded', () => {
         description: planDescription,
         itemOffered: {
           '@id': `${pageUrl}#product`,
+        },
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: {
+            '@type': 'MonetaryAmount',
+            value: 0,
+            currency: 'USD',
+          },
+          shippingDestination: {
+            '@type': 'DefinedRegion',
+            name: 'Worldwide',
+          },
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 0,
+              maxValue: 0,
+              unitCode: 'HUR',
+            },
+            transitTime: {
+              '@type': 'QuantitativeValue',
+              minValue: 0,
+              maxValue: 0,
+              unitCode: 'HUR',
+            },
+          },
+        },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          merchantReturnDays: 14,
+          returnFees: 'https://schema.org/FreeReturn',
+          returnMethod: 'https://schema.org/ReturnByMail',
+          applicableCountry: 'US',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
         },
       };
 
@@ -197,8 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
         '@id': `${pageUrl}#product`,
         name: 'TRYGO',
         description: heroLead,
+        image: heroImage,
         brand: {
-          '@id': `${origin}/#organization`,
+          '@type': 'Brand',
+          name: 'TRYGO',
+          url: origin,
+          logo: `${origin}/wp-content/themes/trygo/assets/images/trygo-logo.png`,
         },
         audience: audienceNodes,
         featureList,

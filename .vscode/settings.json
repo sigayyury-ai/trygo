@@ -8,9 +8,16 @@
   "files.autoSaveDelay": 1000,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
-  "git.inputValidation": "always",
+  "git.inputValidation": true,
   "git.inputValidationLength": 72,
   "git.inputValidationSubjectLength": 50
 }
+
+
+
+
+
+
+

@@ -8,8 +8,8 @@ get_header();
 
 <main>
   <div class="blog-header">
-    <h1>Блог</h1>
-    <p>Полезные статьи и материалы о маркетинге, бизнесе и продажах</p>
+    <h1>Blog</h1>
+    <p>Practical articles and resources on marketing, business, and sales.</p>
   </div>
       <section class="featured" aria-label="Editor picks">
         <div class="section-header">
@@ -57,7 +57,7 @@ get_header();
                 </div>
                   <div class="featured-body">
                     <div class="meta">
-                      <span><?php echo get_the_date('j F Y'); ?></span> 
+                      <span><?php echo esc_html( get_the_date( 'F j, Y' ) ); ?></span>
                       <span></span>
                     </div>
                     <h3><?php the_title(); ?></h3>
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <img src="<?php echo esc_url($image_src); ?>" alt="<?php echo esc_attr($image_alt); ?>" loading="lazy" />
           <div class="feed-body">
             <div class="meta">
-              <span><?php echo get_the_date('j F Y'); ?> года</span>
+              <span><?php echo esc_html( get_the_date( 'F j, Y' ) ); ?></span>
             </div>
             <h3><?php the_title(); ?></h3>
             <p><?php echo esc_html($card_text); ?></p>
