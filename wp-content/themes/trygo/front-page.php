@@ -103,7 +103,7 @@ get_header();
         <div class="inside-shell">
           <figure class="inside-visual" aria-hidden="true">
             <img
-              src="https://urock.pro/trygo/wp-content/uploads/2025/09/black-white-portrait-digital-nomads.jpg"
+              src="<?php echo esc_url( get_theme_file_uri( 'assets/images/inside-visual.jpg' ) ); ?>"
               alt="Workflow preview"
               loading="lazy"
               width="100%"
