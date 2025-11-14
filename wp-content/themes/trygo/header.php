@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script type="application/ld+json" id="product-structured-data"></script>
+    <!-- Structured data injected via trygo_print_structured_data() in functions.php -->
     <?php wp_head(); ?>
   </head>
   <?php
