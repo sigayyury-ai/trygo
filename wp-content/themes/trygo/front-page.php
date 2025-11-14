@@ -8,15 +8,10 @@ get_header();
 
     <section class="hero" id="hero">
       <div class="hero-content">
-        <h1>AI marketing co-pilot for solo founders and solopreneurs</h1>
+        <h1>AI marketing co-pilot</h1>
         <p class="hero-lead">
-          No marketing expertise or time? Use our AI co-pilot to create complete go-to-market strategies in minutes.
+          Make GTM for your launches faster and test hypotheses.
         </p>
-        <ul class="hero-benefits">
-          <li>Shortens the path from idea to first qualified leads</li>
-          <li>Delivers strategy, plan, and marketing assets straight out of the box</li>
-          <li>Helps launch digital products without hiring a marketing team</li>
-        </ul>
         <div class="hero-actions">
           <a class="primary-btn" href="#pricing">Make your GTM in one click</a>
           <a class="secondary-btn" href="#unique-features">See all features</a>
